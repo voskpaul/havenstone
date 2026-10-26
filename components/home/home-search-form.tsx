@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
@@ -8,10 +9,29 @@ const locations = ['Westlands', 'Kilimani', 'Kileleshwa', 'Lavington', 'Karen', 
 
 export function HomeSearchForm() {
   const router = useRouter()
+  const [rangeError, setRangeError] = useState('')
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const formData = new FormData(event.currentTarget)
+    const minimum = String(formData.get('min') ?? '').trim()
+    const maximum = String(formData.get('max') ?? '').trim()
+    const invalidMinimum = minimum !== '' && (!Number.isSafeInteger(Number(minimum)) || Number(minimum) < 0)
+    const invalidMaximum = maximum !== '' && (!Number.isSafeInteger(Number(maximum)) || Number(maximum) < 0)
+
+    if (invalidMinimum || invalidMaximum) {
+      setRangeError('Enter whole-number budgets of zero or more.')
+      document.getElementById(invalidMinimum ? 'home-min-budget' : 'home-max-budget')?.focus()
+      return
+    }
+
+    if (minimum !== '' && maximum !== '' && Number(minimum) > Number(maximum)) {
+      setRangeError('Minimum budget must be lower than maximum budget.')
+      document.getElementById('home-min-budget')?.focus()
+      return
+    }
+
+    setRangeError('')
     const params = new URLSearchParams()
 
     for (const key of ['location', 'purpose', 'type', 'min', 'max']) {
@@ -24,7 +44,7 @@ export function HomeSearchForm() {
   }
 
   return (
-    <form className="home-search" onSubmit={handleSubmit} aria-label="Search properties">
+    <form className="home-search" onSubmit={handleSubmit} aria-label="Search properties" noValidate>
       <p className="home-search__heading">
         <Search size={15} aria-hidden="true" /> Refine your search
       </p>
@@ -67,11 +87,33 @@ export function HomeSearchForm() {
             <label htmlFor="home-min-budget" className="sr-only">
               Minimum budget in Kenyan shillings
             </label>
-            <input id="home-min-budget" name="min" type="number" min="0" inputMode="numeric" placeholder="Min" />
+            <input
+              id="home-min-budget"
+              name="min"
+              type="number"
+              min="0"
+              step="1"
+              inputMode="numeric"
+              placeholder="Min"
+              aria-invalid={Boolean(rangeError)}
+              aria-describedby={rangeError ? 'home-search-error' : undefined}
+              onChange={() => setRangeError('')}
+            />
             <label htmlFor="home-max-budget" className="sr-only">
               Maximum budget in Kenyan shillings
             </label>
-            <input id="home-max-budget" name="max" type="number" min="0" inputMode="numeric" placeholder="Max" />
+            <input
+              id="home-max-budget"
+              name="max"
+              type="number"
+              min="0"
+              step="1"
+              inputMode="numeric"
+              placeholder="Max"
+              aria-invalid={Boolean(rangeError)}
+              aria-describedby={rangeError ? 'home-search-error' : undefined}
+              onChange={() => setRangeError('')}
+            />
           </div>
         </div>
 
@@ -79,6 +121,7 @@ export function HomeSearchForm() {
           <Search size={16} aria-hidden="true" /> Search properties
         </button>
       </div>
+      {rangeError && <p className="home-search__error" id="home-search-error" role="alert">{rangeError}</p>}
     </form>
   )
 }

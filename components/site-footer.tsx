@@ -27,7 +27,7 @@ export function SiteFooter() {
             </span>
           </Link>
           <p>A Nairobi property concept for the many ways people call a city home.</p>
-          <p className="footer-demo-note">A fictional brand. Listings and contact details are sample content.</p>
+          <p className="footer-demo-note">A fictional brand with sample property listings.</p>
         </div>
 
         <div className="footer-links-group">
@@ -40,7 +40,7 @@ export function SiteFooter() {
         <div className="footer-links-group">
           <h3>Get in touch</h3>
           <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-          <span>{contactDetails.phoneDisplay} <small>Demo number</small></span>
+          <a href={`tel:${contactDetails.phoneDisplay}`}>{contactDetails.phoneDisplay}</a>
           <span>{contactDetails.address} <small>Sample address</small></span>
         </div>
       </div>

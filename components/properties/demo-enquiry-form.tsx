@@ -49,11 +49,15 @@ export function DemoEnquiryForm({
     event.preventDefault()
     const nextErrors: FormErrors = {}
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    const phonePattern = /^\+?[\d\s().-]{7,20}$/
+    const normalizedPhone = values.phone.trim()
+    const phoneDigits = normalizedPhone.replace(/\D/g, '')
+    const phonePattern = /^\+?[\d\s().-]+$/
 
     if (!values.name.trim()) nextErrors.name = 'Enter your full name.'
     if (!emailPattern.test(values.email.trim())) nextErrors.email = 'Enter a valid email address.'
-    if (!phonePattern.test(values.phone.trim())) nextErrors.phone = 'Enter a valid phone number.'
+    if (!phonePattern.test(normalizedPhone) || phoneDigits.length < 7 || phoneDigits.length > 15) {
+      nextErrors.phone = 'Enter a phone number with 7 to 15 digits.'
+    }
     if (requireMessage && !values.message.trim()) nextErrors.message = 'Add a short message so we know how to help.'
 
     setErrors(nextErrors)
@@ -79,7 +83,7 @@ export function DemoEnquiryForm({
       {propertyTitle && <input type="hidden" name="property" value={propertyTitle} readOnly />}
 
       <label className="form-field" htmlFor="enquiry-name">
-        Full name <span className="form-field__required" aria-hidden="true">*</span>
+        <span className="form-field__label">Full name <span className="form-field__required" aria-hidden="true">*</span></span>
         <input
           id="enquiry-name"
           name="name"
@@ -91,11 +95,11 @@ export function DemoEnquiryForm({
           aria-describedby={errorFor('name') ? 'enquiry-name-error' : undefined}
           required
         />
-        {errorFor('name') && <span className="form-field__error" id="enquiry-name-error">{errorFor('name')}</span>}
+        {errorFor('name') && <span className="form-field__error" role="alert" id="enquiry-name-error">{errorFor('name')}</span>}
       </label>
 
       <label className="form-field" htmlFor="enquiry-email">
-        Email address <span className="form-field__required" aria-hidden="true">*</span>
+        <span className="form-field__label">Email address <span className="form-field__required" aria-hidden="true">*</span></span>
         <input
           id="enquiry-email"
           name="email"
@@ -107,11 +111,11 @@ export function DemoEnquiryForm({
           aria-describedby={errorFor('email') ? 'enquiry-email-error' : undefined}
           required
         />
-        {errorFor('email') && <span className="form-field__error" id="enquiry-email-error">{errorFor('email')}</span>}
+        {errorFor('email') && <span className="form-field__error" role="alert" id="enquiry-email-error">{errorFor('email')}</span>}
       </label>
 
       <label className="form-field" htmlFor="enquiry-phone">
-        Phone number <span className="form-field__required" aria-hidden="true">*</span>
+        <span className="form-field__label">Phone number <span className="form-field__required" aria-hidden="true">*</span></span>
         <input
           id="enquiry-phone"
           name="phone"
@@ -123,12 +127,12 @@ export function DemoEnquiryForm({
           aria-describedby={errorFor('phone') ? 'enquiry-phone-error' : undefined}
           required
         />
-        {errorFor('phone') && <span className="form-field__error" id="enquiry-phone-error">{errorFor('phone')}</span>}
+        {errorFor('phone') && <span className="form-field__error" role="alert" id="enquiry-phone-error">{errorFor('phone')}</span>}
       </label>
 
       {includeViewingDate && (
         <label className="form-field" htmlFor="enquiry-viewing-date">
-          Preferred viewing date <span>(optional)</span>
+          <span className="form-field__label">Preferred viewing date <span className="form-field__optional">(optional)</span></span>
           <input
             id="enquiry-viewing-date"
             name="viewingDate"
@@ -140,8 +144,17 @@ export function DemoEnquiryForm({
       )}
 
       <label className="form-field" htmlFor="enquiry-message">
-        {requireMessage ? 'How can we help?' : 'A note for the team'}
-        {!requireMessage && <span>(optional)</span>}
+        <span className="form-field__label">
+          {requireMessage ? (
+            <>
+              How can we help? <span className="form-field__required" aria-hidden="true">*</span>
+            </>
+          ) : (
+            <>
+              A note for the team <span className="form-field__optional">(optional)</span>
+            </>
+          )}
+        </span>
         <textarea
           id="enquiry-message"
           name="message"
@@ -153,7 +166,7 @@ export function DemoEnquiryForm({
           placeholder={propertyTitle ? `I would like to know more about ${propertyTitle}...` : 'Tell us a little about what you are looking for...'}
           required={requireMessage}
         />
-        {errorFor('message') && <span className="form-field__error" id="enquiry-message-error">{errorFor('message')}</span>}
+        {errorFor('message') && <span className="form-field__error" role="alert" id="enquiry-message-error">{errorFor('message')}</span>}
       </label>
 
       <button className="button button--forest button--full" type="submit">

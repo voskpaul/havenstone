@@ -89,9 +89,18 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
     event.preventDefault()
     const minValue = minimum === '' ? null : Number(minimum)
     const maxValue = maximum === '' ? null : Number(maximum)
+    const invalidMinimum = minValue !== null && (!Number.isSafeInteger(minValue) || minValue < 0)
+    const invalidMaximum = maxValue !== null && (!Number.isSafeInteger(maxValue) || maxValue < 0)
+
+    if (invalidMinimum || invalidMaximum) {
+      setRangeError('Budgets must be whole numbers of zero or more.')
+      document.getElementById(invalidMinimum ? 'filter-min' : 'filter-max')?.focus()
+      return
+    }
 
     if (minValue !== null && maxValue !== null && minValue > maxValue) {
       setRangeError('Minimum budget must be lower than maximum budget.')
+      document.getElementById('filter-min')?.focus()
       return
     }
 
@@ -148,6 +157,7 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
           id="property-filters"
           onSubmit={handleApply}
           aria-label="Filter sample properties"
+          noValidate
         >
           <label className="filter-field filter-field--location" htmlFor="filter-location">
             Neighbourhood or location
@@ -189,10 +199,15 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
               name="min"
               type="number"
               min="0"
+              step="1"
               inputMode="numeric"
               value={minimum}
-              onChange={(event) => setMinimum(event.target.value)}
+              onChange={(event) => {
+                setMinimum(event.target.value)
+                setRangeError('')
+              }}
               aria-invalid={Boolean(rangeError)}
+              aria-describedby={rangeError ? 'filter-budget-error' : undefined}
             />
           </label>
 
@@ -203,10 +218,15 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
               name="max"
               type="number"
               min="0"
+              step="1"
               inputMode="numeric"
               value={maximum}
-              onChange={(event) => setMaximum(event.target.value)}
+              onChange={(event) => {
+                setMaximum(event.target.value)
+                setRangeError('')
+              }}
               aria-invalid={Boolean(rangeError)}
+              aria-describedby={rangeError ? 'filter-budget-error' : undefined}
             />
           </label>
 
@@ -230,7 +250,7 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
             </button>
           </div>
         </form>
-        {rangeError && <p className="filter-error" role="alert">{rangeError}</p>}
+        {rangeError && <p className="filter-error" id="filter-budget-error" role="alert">{rangeError}</p>}
 
         <div className="results-bar">
           <p aria-live="polite">

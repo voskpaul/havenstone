@@ -1,11 +1,11 @@
 export const contactDetails = {
-  email: 'hello@havenstone.example',
-  phoneDisplay: '+254 700 000 000',
+  email: 'paulriemii@gmail.com',
+  phoneDisplay: '+254115346990',
   address: 'Westlands, Nairobi, Kenya',
   addressNote: 'Sample location for this portfolio demonstration',
 }
 
-export const WHATSAPP_PHONE = ''
+export const WHATSAPP_PHONE = '+254115346990'
 
 export function getWhatsAppUrl(message: string): string | null {
   const digits = WHATSAPP_PHONE.replace(/\D/g, '')

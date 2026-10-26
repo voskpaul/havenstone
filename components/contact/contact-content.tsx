@@ -10,7 +10,7 @@ export function ContactContent() {
           <p className="eyebrow">A NOTE TO THE HAVENSTONE TEAM</p>
           <h1 className="page-heading">Start with the home you have in mind.</h1>
           <p className="page-hero__copy">
-            Use the example details or try the enquiry form. This portfolio demonstration does not send or store personal information.
+            Reach Havenstone by email, phone, or WhatsApp. The enquiry form is a local demo: it does not send or store your submission.
           </p>
         </header>
 
@@ -19,7 +19,7 @@ export function ContactContent() {
             <p className="eyebrow">CONTACT DETAILS</p>
             <h2 className="section-heading" id="contact-details-title">Ways to get in touch.</h2>
             <p className="section-intro">
-              The example contact details are fictional and included to make this portfolio experience feel complete.
+              Use the links below for direct contact. The location listed is a sample address.
             </p>
 
             <div className="contact-info-list">
@@ -27,14 +27,14 @@ export function ContactContent() {
                 <span className="contact-info-item__label">EMAIL</span>
                 <div>
                   <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-                  <small>Example address · not monitored</small>
+                  <small>Opens your email app</small>
                 </div>
               </div>
               <div className="contact-info-item">
                 <span className="contact-info-item__label">PHONE</span>
                 <div>
-                  <p>{contactDetails.phoneDisplay}</p>
-                  <small>Fictional demo number</small>
+                  <a href={`tel:${contactDetails.phoneDisplay}`}>{contactDetails.phoneDisplay}</a>
+                  <small>Tap to call</small>
                 </div>
               </div>
               <div className="contact-info-item">
@@ -51,7 +51,7 @@ export function ContactContent() {
 
           <section className="contact-form-panel" aria-labelledby="contact-form-title">
             <h2 id="contact-form-title">Try the enquiry form.</h2>
-            <p>Share your contact details and a short note to try the form validation and confirmation state.</p>
+            <p>This form runs locally to demonstrate validation. It does not send or retain your submission.</p>
             <DemoEnquiryForm requireMessage submitLabel="Complete demo enquiry" />
           </section>
         </div>

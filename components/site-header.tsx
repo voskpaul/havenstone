@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
@@ -15,9 +15,18 @@ const navItems = [
 export function SiteHeader() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   return (
-    <header className="site-header">
+    <header
+      className="site-header"
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && menuOpen) {
+          setMenuOpen(false)
+          menuButtonRef.current?.focus()
+        }
+      }}
+    >
       <div className="site-header__inner container">
         <Link className="brand" href="/" aria-label="Havenstone Properties home" onClick={() => setMenuOpen(false)}>
           <span className="brand__mark" aria-hidden="true">H</span>
@@ -43,6 +52,7 @@ export function SiteHeader() {
             Make an enquiry <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
           <button
+            ref={menuButtonRef}
             className="mobile-menu-toggle"
             type="button"
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
@@ -55,27 +65,25 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {menuOpen && (
-        <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
-          {navItems.map((item) => {
-            const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                aria-current={active ? 'page' : undefined}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
-            )
-          })}
-          <Link className="button button--forest" href="/contact" onClick={() => setMenuOpen(false)}>
-            Make an enquiry <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
-        </nav>
-      )}
+      <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation" hidden={!menuOpen}>
+        {navItems.map((item) => {
+          const active = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={active ? 'page' : undefined}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </Link>
+          )
+        })}
+        <Link className="button button--forest" href="/contact" onClick={() => setMenuOpen(false)}>
+          Make an enquiry <ArrowUpRight size={16} aria-hidden="true" />
+        </Link>
+      </nav>
     </header>
   )
 }

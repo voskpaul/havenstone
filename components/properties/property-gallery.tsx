@@ -52,13 +52,13 @@ export function PropertyGallery({ photos, propertyTitle }: PropertyGalleryProps)
 
   return (
     <>
-      <div className="property-gallery" aria-label={`Photos of ${propertyTitle}`}>
+      <div className="property-gallery" role="group" aria-label={`Photos of ${propertyTitle}`}>
         {visiblePhotos.map((photo, index) => (
           <button
             className="gallery-item"
             key={`${photo.src}-${index}`}
             type="button"
-            aria-label={`View photo ${index + 1} of ${photos.length}: ${photo.alt}`}
+            aria-label={index === 0 ? `View all ${photos.length} photos` : `View photo ${index + 1} of ${photos.length}: ${photo.alt}`}
             onClick={() => openPhoto(index)}
           >
             <Image
