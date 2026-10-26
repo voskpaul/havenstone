@@ -26,7 +26,7 @@ export function HomeSearchForm() {
   return (
     <form className="home-search" onSubmit={handleSubmit} aria-label="Search properties">
       <p className="home-search__heading">
-        <Search size={15} aria-hidden="true" /> Find a place to call yours
+        <Search size={15} aria-hidden="true" /> Refine your search
       </p>
       <div className="home-search__fields">
         <label htmlFor="home-location">

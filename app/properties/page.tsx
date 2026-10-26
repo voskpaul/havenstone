@@ -6,7 +6,7 @@ import type { PropertyType } from '@/lib/properties'
 export const metadata: Metadata = {
   title: 'Explore properties in Nairobi',
   description:
-    'Search sample apartments, townhouses, villas, and family homes across Nairobi by neighborhood, price, and property type.',
+    'Search sample apartments, townhouses, villas, and family homes across Nairobi by neighbourhood, price, and property type.',
 }
 
 type SearchParams = Record<string, string | string[] | undefined>

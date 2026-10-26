@@ -11,7 +11,7 @@ const principles = [
   {
     number: '02',
     title: 'Make the details clear',
-    description: 'Useful information should be easy to find, from the neighborhood and layout to the features you want to compare.',
+    description: 'Useful information should be easy to find, from the neighbourhood and layout to the features you want to compare.',
   },
   {
     number: '03',
@@ -55,7 +55,7 @@ export function AboutContent() {
           <div>
             <h2 id="about-statement-title">Good homes make room for the life happening inside them.</h2>
             <p className="about-statement__copy">
-              We created Havenstone as a portfolio demonstration for a considered Nairobi property experience. The listings, business information, and contact details on this site are fictional sample content, not verified real estate offers or professional advice.
+              A home is shaped by more than floor area. Morning light, a shorter trip to your routine, or a garden that changes the pace of a day can matter just as much. This concept is built around noticing those details and making them easier to compare.
             </p>
           </div>
         </div>

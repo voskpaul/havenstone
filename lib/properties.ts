@@ -42,7 +42,7 @@ export const properties: PropertyListing[] = [
     bedrooms: 2,
     bathrooms: 2,
     area: 1250,
-    summary: 'A light-filled apartment with room to settle in and slow down.',
+    summary: 'A Kilimani apartment with leafy balcony views and an open-plan layout.',
     description:
       'Maji House is a thoughtfully arranged two-bedroom apartment with an open living space, warm finishes, and a balcony looking out to the green canopy of Kilimani. The layout keeps the shared spaces connected while leaving room for a little privacy.',
     image: '/images/kilimani-apartment.png',
@@ -94,7 +94,7 @@ export const properties: PropertyListing[] = [
     bedrooms: 1,
     bathrooms: 1,
     area: 820,
-    summary: 'A considered city apartment with a bright, easy-flowing plan.',
+    summary: 'A bright one-bedroom city base with full-height windows and a connected plan.',
     description:
       'The Canopy Residence makes good use of its one-bedroom layout, with a connected kitchen and lounge and tall windows that bring in the day. It is a simple, polished base for city living in Westlands.',
     image: '/images/westlands-apartment.png',
@@ -120,7 +120,7 @@ export const properties: PropertyListing[] = [
     bedrooms: 4,
     bathrooms: 3,
     area: 3300,
-    summary: 'A generous family home with a garden and a shaded terrace.',
+    summary: 'A family home with a shaded terrace and a garden made for afternoon quiet.',
     description:
       'Garden House is arranged for everyday family life, with four bedrooms, a welcoming living room, and doors that open onto a shaded terrace. Mature planting gives the garden a settled, private feel.',
     image: '/images/lavington-home.png',
@@ -146,7 +146,7 @@ export const properties: PropertyListing[] = [
     bedrooms: 5,
     bathrooms: 4,
     area: 4520,
-    summary: 'An easy-going home set among mature trees and open lawn.',
+    summary: 'Mature shade, generous shared rooms, and an easy connection to the garden.',
     description:
       'Karen Grove House offers generous shared rooms, five bedrooms, and a broad lawn framed by mature trees. Its low-profile exterior and natural materials keep the home connected to its garden.',
     image: '/images/karen-home.png',
@@ -172,7 +172,7 @@ export const properties: PropertyListing[] = [
     bedrooms: 4,
     bathrooms: 4,
     area: 3900,
-    summary: 'A spacious modern residence with a shaded veranda and garden.',
+    summary: 'A contemporary villa with a covered veranda and room to gather outdoors.',
     description:
       'Runda House is a sample four-bedroom villa with a quiet garden setting, a shaded veranda, and generous rooms for gathering. Pale stone and warm timber give the contemporary architecture a softer edge.',
     image: '/images/runda-villa.png',

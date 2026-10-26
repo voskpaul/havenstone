@@ -3,12 +3,12 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ArrowUpRight, House, Menu, X } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/properties', label: 'Properties' },
-  { href: '/about', label: 'About us' },
+  { href: '/about', label: 'Our approach' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -20,9 +20,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-header__inner container">
         <Link className="brand" href="/" aria-label="Havenstone Properties home" onClick={() => setMenuOpen(false)}>
-          <span className="brand__mark" aria-hidden="true">
-            <House size={19} strokeWidth={1.6} />
-          </span>
+          <span className="brand__mark" aria-hidden="true">H</span>
           <span className="brand__wordmark">
             <span className="brand__name">Havenstone</span>
             <span className="brand__descriptor">Properties</span>
@@ -42,7 +40,7 @@ export function SiteHeader() {
 
         <div className="site-header__actions">
           <Link className="button button--forest header-viewing" href="/contact">
-            Book a viewing <ArrowUpRight size={16} aria-hidden="true" />
+            Make an enquiry <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
           <button
             className="mobile-menu-toggle"
@@ -74,7 +72,7 @@ export function SiteHeader() {
             )
           })}
           <Link className="button button--forest" href="/contact" onClick={() => setMenuOpen(false)}>
-            Book a viewing <ArrowUpRight size={16} aria-hidden="true" />
+            Make an enquiry <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
         </nav>
       )}

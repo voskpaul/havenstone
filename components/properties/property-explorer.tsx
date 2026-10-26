@@ -125,7 +125,7 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
           <p className="eyebrow">THE HAVENSTONE COLLECTION</p>
           <div className="explorer-heading-row">
             <div>
-              <h1 className="page-heading">Find a home that fits your life.</h1>
+              <h1 className="page-heading">Explore the Nairobi collection.</h1>
               <p className="page-hero__copy">
                 Explore sample apartments, townhouses, and family homes across Nairobi. Refine your search to find the details that matter to you.
               </p>
@@ -150,7 +150,7 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
           aria-label="Filter sample properties"
         >
           <label className="filter-field filter-field--location" htmlFor="filter-location">
-            Neighborhood or location
+            Neighbourhood or location
             <input
               id="filter-location"
               name="location"
@@ -259,7 +259,7 @@ export function PropertyExplorer({ initialFilters }: PropertyExplorerProps) {
           <div className="empty-state">
             <span className="empty-state__icon"><Search size={21} aria-hidden="true" /></span>
             <h2>No sample homes match those filters.</h2>
-            <p>Try a different neighborhood, budget, or property type to see more of the collection.</p>
+            <p>Try a different neighbourhood, budget, or property type to see more of the collection.</p>
             <button className="button button--forest button--small" type="button" onClick={clearFilters}>
               Clear all filters
             </button>

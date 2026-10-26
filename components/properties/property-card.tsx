@@ -9,13 +9,14 @@ import { formatListingPrice } from '@/lib/properties'
 
 type PropertyCardProps = {
   property: PropertyListing
+  variant?: 'standard' | 'lead' | 'compact'
 }
 
-export function PropertyCard({ property }: PropertyCardProps) {
+export function PropertyCard({ property, variant = 'standard' }: PropertyCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
 
   return (
-    <article className="property-card">
+    <article className={`property-card property-card--${variant}`}>
       <div className="property-card__media">
         <Link className="property-card__image-link" href={`/properties/${property.slug}`} tabIndex={-1} aria-hidden="true">
           <Image
@@ -23,7 +24,13 @@ export function PropertyCard({ property }: PropertyCardProps) {
             src={property.image}
             alt={property.imageAlt}
             fill
-            sizes="(max-width: 600px) 100vw, (max-width: 820px) 50vw, 33vw"
+            sizes={
+              variant === 'lead'
+                ? '(max-width: 600px) 100vw, (max-width: 820px) 100vw, 48vw'
+                : variant === 'compact'
+                  ? '(max-width: 600px) 28vw, (max-width: 820px) 24vw, 15vw'
+                  : '(max-width: 600px) 100vw, (max-width: 820px) 50vw, 33vw'
+            }
           />
         </Link>
         <span className="property-badge">{property.purpose === 'rent' ? 'For rent' : 'For sale'}</span>
