@@ -1362,8 +1362,10 @@ img {
 
 .breadcrumbs a {
   display: inline-flex;
+  min-width: 44px;
   min-height: 44px;
   align-items: center;
+  justify-content: center;
   color: var(--forest);
   text-decoration: none;
 }
@@ -1476,6 +1478,9 @@ img {
 }
 
 .gallery-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
   width: min(1120px, calc(100vw - 30px));
   max-width: none;
   max-height: calc(100dvh - 30px);
@@ -1516,6 +1521,7 @@ img {
   display: grid;
   width: 44px;
   height: 44px;
+  flex: 0 0 44px;
   place-items: center;
   border: 1px solid rgb(255 255 255 / 24%);
   background: transparent;
@@ -1543,6 +1549,11 @@ img {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.gallery-dialog__controls > span {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .detail-layout {

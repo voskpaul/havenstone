@@ -95,7 +95,7 @@ export function DemoEnquiryForm({
           aria-describedby={errorFor('name') ? 'enquiry-name-error' : undefined}
           required
         />
-        {errorFor('name') && <span className="form-field__error" role="alert" id="enquiry-name-error">{errorFor('name')}</span>}
+        {errorFor('name') && <span className="form-field__error" id="enquiry-name-error">{errorFor('name')}</span>}
       </label>
 
       <label className="form-field" htmlFor="enquiry-email">
@@ -111,7 +111,7 @@ export function DemoEnquiryForm({
           aria-describedby={errorFor('email') ? 'enquiry-email-error' : undefined}
           required
         />
-        {errorFor('email') && <span className="form-field__error" role="alert" id="enquiry-email-error">{errorFor('email')}</span>}
+        {errorFor('email') && <span className="form-field__error" id="enquiry-email-error">{errorFor('email')}</span>}
       </label>
 
       <label className="form-field" htmlFor="enquiry-phone">
@@ -127,7 +127,7 @@ export function DemoEnquiryForm({
           aria-describedby={errorFor('phone') ? 'enquiry-phone-error' : undefined}
           required
         />
-        {errorFor('phone') && <span className="form-field__error" role="alert" id="enquiry-phone-error">{errorFor('phone')}</span>}
+        {errorFor('phone') && <span className="form-field__error" id="enquiry-phone-error">{errorFor('phone')}</span>}
       </label>
 
       {includeViewingDate && (
@@ -166,7 +166,7 @@ export function DemoEnquiryForm({
           placeholder={propertyTitle ? `I would like to know more about ${propertyTitle}...` : 'Tell us a little about what you are looking for...'}
           required={requireMessage}
         />
-        {errorFor('message') && <span className="form-field__error" role="alert" id="enquiry-message-error">{errorFor('message')}</span>}
+        {errorFor('message') && <span className="form-field__error" id="enquiry-message-error">{errorFor('message')}</span>}
       </label>
 
       <button className="button button--forest button--full" type="submit">
