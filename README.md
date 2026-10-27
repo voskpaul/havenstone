@@ -1,5 +1,7 @@
 # Havenstone Properties
 
+**Live site:** [havenstone-sepia.vercel.app](https://havenstone-sepia.vercel.app)
+
 A fictional real-estate portfolio demonstration for discovering sample homes and apartments in Nairobi. The site includes property browsing, listing details, neighborhood discovery, and enquiry pathways. Listings and contact details are demonstration content, not live inventory.
 
 ## Features
